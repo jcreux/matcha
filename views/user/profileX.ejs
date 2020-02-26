@@ -1,0 +1,126 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/profileX.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <div class="container">
+        <h2><%= user.firstname %> <%= user.lastname %></h2>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel" style="width:50%; margin:auto;">
+            <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <% for (var i = 1; i < nbrofimage;i++) { %>
+                <li data-target="#myCarousel" data-slide-to="<%=i%>"></li>
+            <% } %>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="/uploads/photo[<%= user.user_id %>]_[0].jpeg" style="width:100%;">
+                </div> 
+                <% for (var p = 1; p < nbrofimage;p++) { %>
+                    <div class="item">
+                        <img src="/uploads/photo[<%= user.user_id %>]_[<%= p %>].jpeg" style="width:100%;">
+                    </div>
+                <% } %>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="buttons_panel">
+            <a href="/user/chat/<%= user.user_id %>"><input class="buttons" type="submit" value="Chat" /></a>
+            <% if (tab.likedyet == 1) { %> 
+                <a href="/user/like/<%= user.user_id %>/<%= page %>"><input class="buttons" type="submit" value="Unlike"/></a>
+                <% } else { %> 
+                    <a href="/user/like/<%= user.user_id %>/<%= page %>"><input class="buttons" type="submit" value="Like"/></a>
+                    <% } %>
+            <% if (tab.blockedyet == 1) { %> 
+                <a href="/user/block/<%= user.user_id %>/<%= page %>"><input class="buttons" type="submit" value="Unblock"/></a>
+                <% } else { %> 
+                    <a href="/user/block/<%= user.user_id %>/<%= page %>"><input class="buttons" type="submit" value="Block"/></a>
+                    <% } %>
+            <a href="/user/report/<%= user.user_id %>/<%= page %>"><input class="buttons" type="submit" value="Report" /></a>
+        </div><br />
+
+        <div id="text">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="username">Username :</label>
+                    </div>
+                    <div class="col-75">
+                        <p id="username" name="username"><%= user.username %></p>
+                    </div>
+                </div>
+
+        <div id="text">
+            <div class="row">
+                <div class="col-25">
+                    <label for="bday">Birthdate :</label>
+                </div>
+                <div class="col-75">
+                    <p id="bday" name="bday"><%= user.birthdate %></p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-25">
+                    <label for="bio">Bio :</label>
+                </div>
+                <div class="col-75">
+                    <p type="text" id="bio" name="bio"><%= user.bio %></p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-25">
+                    <label for="interests">Interests :</label>
+                </div>
+                <div class="col-75">
+                    <p type="text" id="interests" name="interests"><%= user.interests %></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label for="gender">Gender :</label>
+                </div>
+                <div class="col-75">
+                    <p type="text" id="gender" name="gender"><%=user.gender %></p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-25">
+                    <label for="sexuality">Looking for :</label>
+                </div>
+                <div class="col-75">
+                    <p type="text" id="sexuality" name="sexuality"><%=user.sexuality %></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="score">Score :</label>
+                </div>
+                <div class="col-75">
+                    <p type="text" id="score" name="score"><%=score %></p>
+                </div>
+            </div>
+        </div>
+        <%if (connected) { %>
+            CONNECTED
+        <% } else if (!user.lastConnection) { %>
+            DISCONNECTED
+         <% } else { %>
+            (Last seen on <%= user.lastConnection %>
+         <% } %>
+    </div>
+    <%- include('../includes/end.ejs') %>

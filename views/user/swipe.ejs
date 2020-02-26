@@ -1,0 +1,82 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/usercard.css" />
+</head>
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div id='filtres'>
+            <h2>Filters</h2>
+            <form action="/user/swipe/<%= eval(page)%>" method="GET">
+                <label for="hash">Interests :</label>
+                <input type='text' name='hash' placeholder="#music #travel #cats" />
+                <label for="minscore">Score (min) :</label>
+                <input type='text' name='minscore' placeholder="10" />
+                <label for="maxscore">Score (max) :</label>
+                <input type='text' name='maxscore' placeholder="100" />
+                <label for="minage">Age (min) :</label>
+                <input type='text' name='minage' placeholder="18" />
+                <label for="maxage">Age (max) :</label>
+                <input type='text' name='maxage' placeholder="25" />
+                <label for="mindist">Distance (min) :</label>
+                <input type='text' name='mindist' placeholder="2 (km)" />
+                <label for="maxdist">Distance (max) :</label>
+                <input type='text' name='maxdist' placeholder="10 (km)" />
+                <label for="order">Order by :</label>
+                <select name='order' id="order">
+                    <option value="default">Default</option>
+                    <option value="tag">Interests</option>
+                    <option value="popularity">Score</option>
+                    <option value="age">Age</option>
+                    <option value="closest">Distance</option>
+                </select>
+                <input type='submit' value="Search" />
+            </form>
+        </div>
+        <div class="grid" id="list">
+            <% for(var i=0; i<user.length; i++) {%>
+                <% if (i >= Math.ceil(page) * 5 && i < Math.ceil((parseInt(page) + 1) * 5)) {%>
+                    <article class="card user-item">
+                        <header class="card__header">
+                            <h1 class="user__title">
+                                <%= user[i].firstname %>
+                            </h1>
+                        </header>
+                        <div class="card__img">
+                            <a href="/user/profile/<%= user[i].id %>"><img id="img" src="/uploads/photo[<%= user[i].id %>]_[0].jpeg" /></a>
+                        </div>
+                        <div class="card__content">
+                            <p>Age : <%= user[i].age %></p>
+                            <p class="user_location"><img src="/img/map-pin.svg" alt="logout"> <%= user[i].distance%> Km</p><br/>
+                            <p class="user__bio"><%= user[i].bio %></p><br/>
+                            <p class="user_interests"><%= user[i].hashtags %></p>
+                        </div>
+                        <div class="section_like">
+                            <a href="/user/like/<%=user[i].id %>/<%=fullpage %>">
+                                <div class="like">
+                                    <img class="thumbs" src="/img/thumbs-up.svg" alt="like" />
+                                </div>
+                            </a>
+                            <a href="/user/block/<%=user[i].id %>/<%=fullpage %>">
+                                <div class="dislike">
+                                    <img class="thumbs" src="/img/thumbs-down.svg" alt="dislike" />
+                                </div>
+                            </a>
+                        </div>
+                    </article>
+                <% } %>
+            <% } %>
+            <section class="pagination">
+                <% if (page > 0)
+                { %>
+            <a href="/user/<%=pagename%>/0?<%=searchparam%>">first</a>
+            <a href="/user/<%=pagename%>/<%=eval(page) - 1%>?<%=searchparam%>">prec</a>
+            <% } %>
+            <% if (page < Math.ceil(user.length/5) - 1)
+            { %>
+            <a href="/user/<%=pagename%>/<%=eval(page) + 1%>?<%=searchparam%>">next</a>
+            <a href="/user/<%=pagename%>/<%=Math.ceil(user.length/5) - 1%>?<%=searchparam%>">last</a>
+            <% } %>
+            </section>
+        </div>
+    </main>
+<%- include('../includes/end.ejs') %>

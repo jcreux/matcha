@@ -1,0 +1,33 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+<main>
+
+    <h1>Premium Account Payment for a one time payment of <%= Price %> euro</h1>
+    <ul>
+        <li>5 daily Super Likes</li>
+        <li>Rewind – unlimited ability to undo your last swipe</li>
+        <li>Passport – you can change your location to any city in the world and start swiping</li>
+        <li>1 monthly Boost – your profile goes straight to the top for a full 30 min of increased exposure (also available ala carte as one of Matcha's in-app purchases)
+        </li>
+        <li>Swipe ad free (No ads)</li>
+        <li>swipes are unlimited - no more time restrictions!</li>
+    </ul>
+    </p>
+
+</main>
+<form action="/premium" method="POST"> 
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="pk_test_yHQuBEidn8ecuVOX94r1m4Vh00fgfdVWBu"
+    data-amount="2900"
+    data-name="Your Order Matcha"
+    data-description="Premium Charge"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-locale="auto"
+    data-currency="eur"
+  >
+    </script>
+</form>
+<%- include('../includes/end.ejs') %>

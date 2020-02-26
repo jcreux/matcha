@@ -1,0 +1,83 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+	<div class="container">
+		<div>
+		<h2>REGISTER</h2>
+			<div class="row">
+				<div class="col-25"></div>
+				<div class="col-75">
+					<p id="errors"><%= error %><p>
+				</div>
+			</div>
+		</div>
+		<form action="/signup" method="POST">
+			<div class="row">
+				<div class="col-25">
+					<label for="first-name">First Name :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="firstname" name="firstname" placeholder="Type your first name" maxlength="32" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="lastname">Last Name :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="lastname" name="lastname" placeholder="Type your last name" maxlength="32" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="username">Username :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="username" name="username" placeholder="Type your username" maxlength="32" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="password">Password :</label>
+				</div>
+				<div class="col-75">
+					<input type="password" id="password" name="password" placeholder="Type your password" maxlength="32" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25"></div>
+				<div class="col-75">
+					<input type="password" id="password2" name="password2" placeholder="Type again your password" maxlength="32" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="bday">Birthdate :</label>
+				</div>
+				<div class="col-75">
+					<input type="date" name="bday" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="email">Email :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="email" name="email" placeholder="Type your email" maxlength="128" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<button type="submit" class="btn btn-outline-success btn-lg">Register</button>
+			</div>
+		</form><br />
+		<a href="/login">Login</a>
+	</div>
+<%- include('../includes/end.ejs') %>

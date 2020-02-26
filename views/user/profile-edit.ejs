@@ -1,0 +1,113 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/forms.css">
+<link rel="stylesheet" href="/css/signup.css">
+</head>
+
+
+<body>
+	<%- include('../includes/navigation.ejs') %>
+
+	<div class="container">
+		<form action="/user/edit-profile" method="POST" enctype="multipart/form-data">
+			<div class="row">
+				<div class="col-25">
+					<label for="first-name">First Name :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" name="firstname" id="firstname" value="<%= user.firstname %>" maxlength="32" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="lastname">Last Name :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" name="lastname" id="lastname" value="<%= user.lastname %>" maxlength="32" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="bio">Bio :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" name="bio" id="bio" value="<%= user.bio %>" maxlength="255" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="bio">Interests :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" name="interests" id="interests" value="<%= user.interests %>" maxlength="50" />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="sexuality">Looking for :</label>
+				</div>
+				<div class="col-75">
+					<select id="sexuality" name="sexuality">
+						<option value="male">male</option>
+						<option value="female">female</option>
+						<option value="both">both</option>
+						<option value="other">other</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="gender">Gender :</label>
+				</div>
+				<div class="col-75">
+					<select id="gender" name="gender">
+						<option value="female">female</option>
+						<option value="male">male</option>
+						<option value="other">other</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="adress"> Adress :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="adress" name="adress" placeholder="96 Boulevard bessieres" maxlength="255" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="zipcode"> Zipcode :</label>
+				</div>
+				<div class="col-75">
+					<input type="text" id="zipcode" name="zipcode" placeholder="75017" minlength="5" maxlength="5" required />
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-25">
+					<label for="bio">Pictures :</label>
+				</div>
+				<div class="col-25" id="div1">
+					<input type="file" name="pic" required accept="image/png, image/jpg, image/jpeg" />
+					<input type="file" name="pic1" accept="image/png, image/jpg, image/jpeg" />
+					<input type="file" name="pic2" accept="image/png, image/jpg, image/jpeg" />
+					<input type="file" name="pic3" accept="image/png, image/jpg, image/jpeg" />
+					<input type="file" name="pic4" accept="image/png, image/jpg, image/jpeg" />
+				</div>
+			</div>
+
+			<div style="display:block;" class="row">
+				<input type="submit" value="Submit" /><br/>
+			</div>
+		</form>
+		<a href='/user/profile'><input style="margin: 10px 0px 0px -15px;" type="submit" value="Return" /></a>
+	</div>
+
+	<%- include('../includes/end.ejs') %>

@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/signup.css">
+</head>
+
+<body>
+<%- include('../includes/navigation.ejs') %>
+<div class="container">
+	<form action="/admin/user" method="POST">
+		<div class="row">
+				<div class="col-75">
+
+		<p>Username</p><input type="text" minlength="2" id="user" required name='user'/>
+		<input type="submit" value='Search..'/>
+	</div>
+</div>
+	</form>
+	<% for(var i=0; i<user.length; i++) {%>
+	<a href="/admin/delete/<%= user[i].user_id %>/<%=fullpage %>"><p id="username"><%= user[i].username %></p><p id="email"> <%= user[i].email %></p></a>
+			<% } %>
+</div>
+<%- include('../includes/end.ejs') %>
+</body>

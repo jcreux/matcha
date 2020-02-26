@@ -1,0 +1,28 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/signup.css">
+
+</head>
+
+<body>
+    <div class="container">
+      <h2>LOGIN</h2>
+      <form action="/login" method="POST" class="was-validated">
+        <div class="form-group">
+          <label for="username">Username :</label>
+          <input type="text" class="form-control" id="username" placeholder="Enter Username" name="username" required>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
+          <div class="valid-feedback">Valid.</div>
+          <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary btn-lg">Login</button>
+      </form><br />
+      <a href="/forgotpassword">Forgot password?</a><br />
+      <a href="/signup">Register</a>
+    </div>
+
+<%- include('../includes/end.ejs') %>

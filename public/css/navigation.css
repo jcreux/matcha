@@ -1,0 +1,37 @@
+#remove_notifs {
+	position: relative;
+	width: 250px;
+	background: rgba(0,123,255, 0.7);
+	text-align: center;
+	cursor: pointer;
+}
+.notifs{
+	position:absolute;
+	z-index: 2;
+	text-align: center;
+	width: 250px;
+	cursor: default;
+	background: rgba(0,123,255, 0.6);
+}
+
+.cnotifs {
+	display: block;
+}
+
+#remove_notifs .cnotifs:hover {
+	background: white;
+	display: block;
+}
+
+#rnotifs {
+	margin: 5px;
+
+}
+
+.nav-item {
+	margin-right: 15px;
+}
+
+#loupe {
+	width: 30px;
+}

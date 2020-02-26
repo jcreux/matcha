@@ -1,0 +1,122 @@
+<%- include('../includes/head.ejs') %>
+<head>
+	
+	<script>
+		function maPosition(position)
+		{
+			var request = new XMLHttpRequest();
+			var method = 'GET';
+			var async = true;
+			document.getElementById("latt").innerHTML = position.coords.latitude;
+			document.getElementById("long").innerHTML = position.coords.longitude;
+			var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+position.coords.latitude+','+position.coords.longitude+'&sensor=true';
+			request.open(method, url, async);
+			request.onreadystatechange = function()
+			{
+				if(request.readyState == 4 && request.status == 200)
+				{
+					var data = JSON.parse(request.responseText);
+					var address = data.results[0];
+					if (address != null)
+					document.write(address.formatted_address);
+				}
+			};
+			request.send();
+		}
+		if(navigator.geolocation)
+		navigator.geolocation.getCurrentPosition(maPosition);
+	</script>
+	
+</head>
+<link rel="stylesheet" href="/css/signup.css">
+
+<div class="container">
+	<form action="/user/details" method="POST" enctype="multipart/form-data">
+		<div class="row">
+			<div class="col-25">
+				<label for="gender">Gender :</label>
+			</div>
+			<div class="col-75">
+				<select id="gender" name="gender">
+					<option value="...">...</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+		</div>
+		
+		
+		<div class="row">
+			<div class="col-25">
+				<label for="sexuality">Looking for : </label>
+			</div>
+			<div class="col-75">
+				<select id="sexuality" name="sexuality">
+					<option value="...">...</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+					<option value="both">Both</option>
+					<option value="other">Other</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-25">
+				<label for="interests"> Interests :</label>
+			</div>
+			<div class="col-75">
+				<input type="text" id="interests" name="interests" maxlength="50" placeholder="#football, #makeup, #skydiving, #videogames" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-25">
+				<label for="bio">Bio :</label>
+			</div>
+			<div class="col-75">
+				<textarea id="bio" name="bio" maxlength="255" placeholder="Write a short bio.." style="height:200px"></textarea>
+			</div>
+		</div>
+		
+		
+		<div class="row">
+			<div class="col-25">
+				<label for="adress"> Adress :</label>
+			</div>
+			<div class="col-75">
+				<input type="text" id="adress" name="adress" placeholder="96 Boulevard bessieres" />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-25">
+				<label for="zipcode"> Zipcode :</label>
+			</div>
+			<div class="col-75">
+				<input type="text" id="zipcode" name="zipcode" maxlength="5" placeholder="75017.." />
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-25">
+				<label for="pictures">Pictures :</label>
+			</div>
+			<div class="col-25" id="div1">
+				<input type="file" name="pic" required />
+				<input type="file" name="pic1" />
+				<input type="file" name="pic2" />
+				<input type="file" name="pic3" />
+				<input type="file" name="pic4" />
+			</div>
+		</div>
+		
+		<div class="row" >
+			<input type="submit" value="Submit" />
+		</div>
+		<textarea name="long" id="long" style="position:absolute;opacity:0;width:0px;height:0px;"></textarea>
+		<textarea name="latt" id="latt" style="position:absolute;opacity:0;width:0px;height:0px;"></textarea>
+	</form>
+</div>
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,17 @@
+<%- include('../includes/head.ejs') %>
+
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <h1> Modify Infos </h1>
+    <form action="/user/modify" method="POST">
+        <input type="email" name="email" placeholder="email" required>
+        <input type="submit">
+    </form>
+    <form action="/user/modify" method="POST">
+        <input type="password" name="password" minlength="1" maxlength="32" placeholder="Password" required>
+        <input type="submit">
+    </form>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,53 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/forms.css">
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+
+
+<body>
+   <%- include('../includes/navigation.ejs') %>
+   <div class="container">
+        <form action="/user/login" method="POST" enctype="multipart/form-data">
+            <h2>Change Username :</h2>
+            <div class="row">
+                <div class="col-25">
+                    <label for="username">New username :</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="username" id="username" value="<%= user.username %>" maxlength="32" required />
+                </div>
+            </div>
+            <h2>Change Email :</h2>
+            <div class="row">
+                <div class="col-25">
+                    <label for="username">New email :</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" name="email" id="email" value="<%= user.email %>" maxlength="255" required />
+                </div>
+            </div>
+                <h2>Change Password :</h2>
+            <div class="row">
+                    <div class="col-25">
+                        <label for="oldpassword">Type old password :</label>
+                    </div>
+                    <div class="col-75">
+                        <input placeholder= "Type old password" type="password" name="oldpassword" id="oldpassword" maxlength="32" required />
+                    </div>
+                </div>
+                
+                <div class="row">
+                        <div class="col-25">
+                            <label for="newpassword">Type new password :</label>
+                        </div>
+                        <div class="col-75">
+                            <input placeholder= "Type new password" type="password" name="newpassword" id="newpassword" maxlength="32" required />
+
+                            <input placeholder= "Confirm new password" type="password" name="newpassword2" id="newpassword2" maxlength="32" required />
+                        </div>
+                    </div>
+                    <input type="submit" value="submit" />
+        </form>
+        <a href='/user/profile'><br /><input type="submit" value="Return" /></a>
+    </div>
+<%- include('../includes/end.ejs') %>
